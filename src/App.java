@@ -7,7 +7,6 @@ import java.sql.PreparedStatement;
 import UploadFileSCV.ConexionSQL;
 import UploadFileSCV.VerficacionUpload;
 import UserInterface.Interface;
-import Utilidades.LoginUser;
 import Utilidades.llUserInterfaceLogin;
 
 public class App {
@@ -19,9 +18,10 @@ public class App {
     // VerficacionUpload.impresionInicial("InterfazLogin", "src\\Utilidades\\ImagenIcono\\1693487.png");;
     // LoginUser loginUser = new LoginUser();
     // loginUser.impresionInicial();
-    llUserInterfaceLogin llUserInterfaceLogin = new llUserInterfaceLogin("InterfazLogin", "src\\Utilidades\\ImagenIcono\\1693487.png");
     // Interface Interface = new Interface();
     // Interface.main();
+    llUserInterfaceLogin llUserInterfaceLogin = new llUserInterfaceLogin("InterfazLogin", "src\\Utilidades\\ImagenIcono\\1693487.png");
+    
     
 }
 }

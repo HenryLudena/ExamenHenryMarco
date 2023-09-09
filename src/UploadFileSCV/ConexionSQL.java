@@ -54,18 +54,20 @@ while((lineText=lineReader.readLine())!=null){
     String[] data = lineText.split(";");
     
     String LlTipoArsenal = data[6];
-    
-    statement.setString(1, LlTipoArsenal);
+
+        String resultado = reemplazarLetras(LlTipoArsenal);
+        System.out.println(resultado);
+    statement.setString(1, resultado);
 
     statement.addBatch();
     if(count%batchSize==0){
         statement.executeBatch();
     }
 }
-//lineReader.close();
+
 statement.executeBatch();
 connection.commit();
-// connection.close();
+
 //Mensaje en caso de que salga bien 
 System.out.println("Data has been inserted succesfully");
 
@@ -90,10 +92,10 @@ while((lineText=lineReader.readLine())!=null){
         statement.executeBatch();
     }
 }
-// lineReader.close();
+
 statement.executeBatch();
 connection.commit();
-// connection.close();
+
 
 //Tercera parte
 
@@ -125,12 +127,12 @@ while((lineText=lineReader.readLine())!=null){
         statement.executeBatch();
     }
 }
-// lineReader.close();
+
 statement.executeBatch();
 connection.commit();
-// connection.close();
 
-// //Cuarta parte
+
+//Cuarta parte
 
 statement = connection.prepareStatement(sqlTabla4);
 lineReader = new BufferedReader(new FileReader(filePath));
@@ -159,10 +161,21 @@ connection.close();
     }catch(Exception exception){
         exception.printStackTrace();
     }
-//Hasta aca
-Interface.main();
+
+Interface.llMain();
     }
 
+    public String reemplazarLetras(String entrada) {
+        // Reemplazar cada letra por la palabra correspondiente
+        entrada = entrada.replace("a", "Avion ");
+        entrada = entrada.replace("b", "Barco ");
+        entrada = entrada.replace("c", "Convoy ");
+        
+        // Unir las palabras con comas
+        entrada = entrada.replaceAll(" ", ", ");
+        
+        return entrada;
+    }
     
     
 }

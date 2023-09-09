@@ -20,48 +20,49 @@ import javax.swing.ImageIcon;
 
 
 public class llUserInterfaceLogin extends JFrame implements ActionListener{
-    private JLabel usuarioLabel, contrasenaLabel, msjLabel, invLabel,  invLabel1, invLabel2;
-    private JTextField usuarioTxtField;
-    private JPasswordField contrasenaField;
-    private JButton botonLogin;
-    private ImageIcon icono;
-VerficacionUpload verficacionUpload = new VerficacionUpload();
-Utilidades utilidades = new Utilidades();
+    private JLabel llUsuarioLabel, llContrasenaLabel, llMsjLabel, llInvLabel,  llInvLabel1, llInvLabel2;
+    private JTextField llUsuarioTxtField;
+    private JPasswordField llContrasenaField;
+    private JButton llBotonLogin;
+    private ImageIcon llIcono;
+VerficacionUpload llVerficacionUpload = new VerficacionUpload();
+Utilidades llUtilidades = new Utilidades();
 
 //Constructor de la clase
-    public  llUserInterfaceLogin(String title, String pathIcon){
-        System.out.println(utilidades.hlCEDULA + "\n" + utilidades.hlCORREO + "\n" + utilidades.hlNOMBRE + "\n" + utilidades.mlCEDULA + "\n" + utilidades.mlCORREO + "\n" + utilidades.mlNOMBRE);
+    public  llUserInterfaceLogin(String llTitle, String llPathIcon){
+        llUtilidades.llLimpiarTerminal();
+        System.out.println(llUtilidades.hlCEDULA + "\n" + llUtilidades.hlCORREO + "\n" + llUtilidades.hlNOMBRE + "\n" + llUtilidades.mlCEDULA + "\n" + llUtilidades.mlCORREO + "\n" + llUtilidades.mlNOMBRE);
         try {
-            setCustomizerForm(title, pathIcon);
+            setCustomizerForm(llTitle, llPathIcon);
         } catch (AppException | SQLException e) {
             e.printStackTrace();
         }
         setSize (600 , 400);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setLayout( new GridLayout(2,2));
-
-        usuarioLabel = new JLabel("Usuario");
-        contrasenaLabel = new JLabel("Contrasena");
-        msjLabel = new JLabel("");
-        usuarioTxtField = new JTextField();
-        contrasenaField = new JPasswordField();
-        botonLogin = new JButton("Iniciar Sesion");
-        invLabel = new JLabel("");
-        invLabel1 = new JLabel("");
-        invLabel2 = new JLabel("");
-
-        botonLogin.addActionListener(this);
-        add(usuarioLabel);
         
-        add(usuarioTxtField);
-        add(invLabel);
-        add(invLabel1);
-        add(invLabel2);
-        add(contrasenaLabel);
-        add(contrasenaField);
+        llUsuarioLabel = new JLabel("Usuario");
+        llContrasenaLabel = new JLabel("Contrasena");
+        llMsjLabel = new JLabel("");
+        llUsuarioTxtField = new JTextField();
+        llContrasenaField = new JPasswordField();
+        llBotonLogin = new JButton("Iniciar Sesion");
+        llInvLabel = new JLabel("");
+        llInvLabel1 = new JLabel("");
+        llInvLabel2 = new JLabel("");
+
+        llBotonLogin.addActionListener(this);
+        add(llUsuarioLabel);
+        
+        add(llUsuarioTxtField);
+        add(llInvLabel);
+        add(llInvLabel1);
+        add(llInvLabel2);
+        add(llContrasenaLabel);
+        add(llContrasenaField);
         add(new JLabel());
-        add(botonLogin);
-        add(msjLabel);
+        add(llBotonLogin);
+        add(llMsjLabel);
 
         setLocationRelativeTo(null);
         setVisible(true);
@@ -69,29 +70,29 @@ Utilidades utilidades = new Utilidades();
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        String usuario = usuarioTxtField.getText();
-        String contrasena = new String(contrasenaField.getPassword());
+        String llUsuario = llUsuarioTxtField.getText();
+        String llContrasena = new String(llContrasenaField.getPassword());
 
-        if ((usuario.equals("henry.ludena@epn.edu.ec") && contrasena.equals("1150141487")) || (usuario.equals("marco.lara01@epn.edu.ec") && contrasena.equals("1727547687")) || (usuario.equals("profe") && contrasena.equals("1234")) || (usuario.equals("Usuario_cualesquiera") && contrasena.equals("contrasena_cualesquiera"))) {
-            msjLabel.setText("Inicio de sesión exitoso");
+        if ((llUsuario.equals("henry.ludena@epn.edu.ec") && llContrasena.equals("1150141487")) || (llUsuario.equals("marco.lara01@epn.edu.ec") && llContrasena.equals("1727547687")) || (llUsuario.equals("profe") && llContrasena.equals("1234")) || (llUsuario.equals("Usuario_cualesquiera") && llContrasena.equals("contrasena_cualesquiera"))) {
+            llMsjLabel.setText("Inicio de sesión exitoso");
             // Aquí puedes redirigir al usuario a otra parte de tu aplicación.
             dispose();
-            verficacionUpload.VerficacionExistenciaFile("ArchivosSCV\\datos.txt", usuario);
+            llVerficacionUpload.llVerficacionExistenciaFile("ArchivosSCV\\datos.txt", llUsuario);
         } else {
-            msjLabel.setText("Usuario o contrasena incorrectos");
+            llMsjLabel.setText("Usuario o contrasena incorrectos");
         }
-        contrasenaField.setText("");
+        llContrasenaField.setText("");
     } 
 
     public void setCustomizerForm(String title, String pathIcon) throws AppException, SQLException{
-        icono = new ImageIcon(pathIcon);                 
+        llIcono = new ImageIcon(pathIcon);                 
         setTitle(title);                            
         setVisible(true);
         setLayout(null);
         setLocation(100, 50);
         setResizable(true);
         setSize(1000, 800);
-        setIconImage(icono.getImage()); 
+        setIconImage(llIcono.getImage()); 
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 }

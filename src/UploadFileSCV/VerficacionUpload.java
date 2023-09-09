@@ -15,23 +15,24 @@ import Utilidades.Utilidades;
 
 public class VerficacionUpload {
     static Scanner sc = new Scanner(System.in);
-    ConexionSQL conexionSQL = new ConexionSQL();
-    public void VerficacionExistenciaFile(String rutaArchivo, String Usuario){
+    ConexionSQL llConexionSQL = new ConexionSQL();
+    Utilidades utilidades = new Utilidades();
+    public void llVerficacionExistenciaFile(String llRutaArchivo, String llUsuario){
         
-
+        utilidades.llLimpiarTerminal();
         // Crear un objeto File con la ruta del archivo CSV
-        File archivo = new File(rutaArchivo);
+        File llArchivo = new File(llRutaArchivo);
 
         // Verificar si el archivo existe
-        if (archivo.exists()) {
+        if (llArchivo.exists()) {
             // Obtener el nombre del archivo
-            String nombreArchivo = archivo.getName();
+            String llNombreArchivo = llArchivo.getName();
 
             // Imprimir el nombre del archivo
-            System.out.println("El nombre del archivo CSV es: " + nombreArchivo + "\n ¿Desea subirlo a la base de datos? Ingrese SI en caso afirmativo caso contrario otro digito");
-            String eleccionUsuario = sc.nextLine();
-            if(eleccionUsuario.toLowerCase().equals("si"))
-                conexionSQL.DatabaseInsert(rutaArchivo, Usuario);
+            System.out.println(" \u001B[32mEl nombre del archivo CSV es: " + llNombreArchivo + "\n ¿Desea subirlo a la base de datos? Ingrese SI en caso afirmativo caso contrario otro digito \u001B[0m");
+            String llEleccionUsuario = sc.nextLine();
+            if(llEleccionUsuario.toLowerCase().equals("si"))
+                llConexionSQL.DatabaseInsert(llRutaArchivo, llUsuario);
         } else {
             //Si el archivo no existe se indica al usuario 
             System.err.println("El archivo no existe en la ruta proporcionada.");
@@ -42,25 +43,25 @@ public class VerficacionUpload {
     /**
      * Se evita volver a subir archivos que ya están en la base de datos
      */
-    public void IngresoArchivo(String rutaArchivo, String Usuario) {
+    public void llIngresoArchivo(String rutaArchivo, String Usuario) {
         Scanner scanner = new Scanner(System.in);
-        Set<String> nombresSet = new HashSet<>();
+        Set<String> llNombresSet = new HashSet<>();
 
         // Cargar nombres desde el archivo (si existe)
-        cargarNombresDesdeArchivo(nombresSet);
+        cargarNombresDesdeArchivo(llNombresSet);
             System.out.println("Ingrese un nombre");
-            String nombre = scanner.nextLine();            
+            String llNombre = scanner.nextLine();            
 
             // Agregar el nombre al conjunto, en caso de que se pueda añadir caso contrario enseñar que no se puede.
-            if (nombresSet.add(nombre)) {
+            if (llNombresSet.add(llNombre)) {
                 System.out.println("Nombre agregado con éxito.");
-                conexionSQL.DatabaseInsert(rutaArchivo, Usuario);
+                llConexionSQL.DatabaseInsert(rutaArchivo, Usuario);
             } else {
                 System.out.println("El nombre ya existe en la lista.");
             }
         
         // Guardar los nombres en el archivo
-        guardarNombresEnArchivo(nombresSet);
+        llGuardarNombresEnArchivo(llNombresSet);
 
         // Imprimir la lista de nombres únicos
         // System.out.println("Nombres únicos ingresados:");
@@ -74,9 +75,9 @@ public class VerficacionUpload {
      */
     private static void cargarNombresDesdeArchivo(Set<String> nombresSet) {
         try (BufferedReader br = new BufferedReader(new FileReader("src\\UploadFileSCV\\nombres.txt"))) {
-            String linea;
-            while ((linea = br.readLine()) != null) {
-                nombresSet.add(linea);
+            String llLinea;
+            while ((llLinea = br.readLine()) != null) {
+                nombresSet.add(llLinea);
             }
         } catch (IOException e) {
             System.err.println("Error al cargar el archivo de nombres: " + e.getMessage());
@@ -87,7 +88,7 @@ public class VerficacionUpload {
      * Guardar el nombre en la lista en caso de que no exista
      * @param nombresSet
      */
-    private static void guardarNombresEnArchivo(Set<String> nombresSet) {
+    private static void llGuardarNombresEnArchivo(Set<String> nombresSet) {
         try (BufferedWriter bw = new BufferedWriter(new FileWriter("src\\UploadFileSCV\\nombres.txt"))) {
             for (String nombre : nombresSet) {
                 bw.write(nombre);
@@ -98,34 +99,34 @@ public class VerficacionUpload {
         }
     }
 
-    Utilidades utilidades = new Utilidades();
+    // Utilidades utilidades = new Utilidades();
 
-    public void impresionInicial(String rutaArchivo, String Usuario){
-        System.out.println(utilidades.hlCEDULA + "\n" + utilidades.hlCORREO + "\n" + utilidades.hlNOMBRE);
-        int HLnumeroIntentos = 3, HLnumeroMenu;
-        boolean HLbandera = true;
-        String HLusuario;
-        String HLclave;
-        do {
-        System.out.println("--------------------");
-        System.out.print("+ Usuario: ");
-        HLusuario = sc.nextLine();
-        System.out.print("+ Clave: ");
-        HLclave = sc.nextLine();
-        System.out.println("--------------------");
-            HLbandera = utilidades.llIngresoUsuario(HLusuario, HLclave,HLbandera);
-            if(HLbandera==true){
-            HLnumeroIntentos--;
-            System.out.println("* Numero de intentos: "+HLnumeroIntentos);
-            }
-            if(HLnumeroIntentos==0){
-            System.out.println("Lo sentimos tu usuario y clave son incorrectos..!");
-            System.out.println("Gracias");
-            System.exit(0);
-            }
-        } while ((HLbandera==true)&&(HLnumeroIntentos>=1));
-        utilidades.HLlimpiarTerminal();
-        System.out.println("Bienvenido "+HLusuario.toUpperCase());
-        VerficacionExistenciaFile(rutaArchivo, Usuario);
-    }
+    // public void llImpresionInicial(String rutaArchivo, String Usuario){
+    //     System.out.println(utilidades.hlCEDULA + "\n" + utilidades.hlCORREO + "\n" + utilidades.hlNOMBRE);
+    //     int HLnumeroIntentos = 3, HLnumeroMenu;
+    //     boolean HLbandera = true;
+    //     String HLusuario;
+    //     String HLclave;
+    //     do {
+    //     System.out.println("--------------------");
+    //     System.out.print("+ Usuario: ");
+    //     HLusuario = sc.nextLine();
+    //     System.out.print("+ Clave: ");
+    //     HLclave = sc.nextLine();
+    //     System.out.println("--------------------");
+    //         HLbandera = utilidades.llIngresoUsuario(HLusuario, HLclave,HLbandera);
+    //         if(HLbandera==true){
+    //         HLnumeroIntentos--;
+    //         System.out.println("* Numero de intentos: "+HLnumeroIntentos);
+    //         }
+    //         if(HLnumeroIntentos==0){
+    //         System.out.println("Lo sentimos tu usuario y clave son incorrectos..!");
+    //         System.out.println("Gracias");
+    //         System.exit(0);
+    //         }
+    //     } while ((HLbandera==true)&&(HLnumeroIntentos>=1));
+    //     utilidades.llLimpiarTerminal();
+    //     System.out.println("Bienvenido "+HLusuario.toUpperCase());
+    //     llVerficacionExistenciaFile(rutaArchivo, Usuario);
+    // }
 }
