@@ -54,9 +54,10 @@ while((lineText=lineReader.readLine())!=null){
     String[] data = lineText.split(";");
     
     String LlTipoArsenal = data[6];
-
-        String resultado = reemplazarLetras(LlTipoArsenal);
-        System.out.println(resultado);
+    //Substring para ignorar el primer espacion de la celda
+    String llTipoArsenal = LlTipoArsenal.substring(1, LlTipoArsenal.length());
+    //Se reemplaza las iniciales por sus palabras correspondientes
+    String resultado = reemplazarLetras(llTipoArsenal);
     statement.setString(1, resultado);
 
     statement.addBatch();
@@ -166,15 +167,36 @@ Interface.llMain();
     }
 
     public String reemplazarLetras(String entrada) {
-        // Reemplazar cada letra por la palabra correspondiente
-        entrada = entrada.replace("a", "Avion ");
-        entrada = entrada.replace("b", "Barco ");
-        entrada = entrada.replace("c", "Convoy ");
-        
-        // Unir las palabras con comas
-        entrada = entrada.replaceAll(" ", ", ");
-        
-        return entrada;
+        StringBuilder resultado = new StringBuilder();
+
+        for (int i = 0; i < entrada.length(); i++) {
+            char letra = entrada.charAt(i);
+            switch (letra) {
+                case 'a':
+                    resultado.append("Avion");
+                    break;
+                case 'b':
+                    resultado.append("Barco");
+                    break;
+                case 'c':
+                    resultado.append("Convoy");
+                    break;
+                case 'd':
+                    resultado.append("Dron");
+                break;
+                case 't':
+                    resultado.append("Tanque");
+                break;
+                default:
+                    resultado.append(letra);
+            }
+
+            if (i < entrada.length() - 1) {
+                resultado.append(", ");
+            }
+        }
+
+        return resultado.toString();
     }
     
     

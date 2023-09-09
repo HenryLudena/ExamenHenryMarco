@@ -40,12 +40,12 @@ public class Interface {
             // Cargar datos TXT en la tabla
             llLoadCSVData(llModel, "ArchivosSCV\\datos.txt");
 
-            llFrame.setSize(800, 600);
+            llFrame.setSize(2000, 600);
             llFrame.setVisible(true);
         });
     }
 
-    private static void llLoadCSVData(DefaultTableModel model, String filePath) {
+    private void llLoadCSVData(DefaultTableModel model, String filePath) {
         String line;
         try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
             // Leer la primera línea como encabezados
@@ -53,10 +53,17 @@ public class Interface {
                 String[] headers = line.split(";");
                 model.setColumnIdentifiers(headers);
             }
-
-            
+    
             while ((line = reader.readLine()) != null) {
                 String[] data = line.split(";");
+                
+                // Reemplazar los valores en la última columna
+                if (data.length > 0) {
+                    String dataTemporal = data[data.length - 1];
+                    String dataTemporal2 = dataTemporal.substring(1, dataTemporal.length());
+                    data[data.length - 1] = reemplazarLetras(dataTemporal2);
+                }
+                
                 model.addRow(data);
             }
         } catch (Exception e) {
@@ -99,5 +106,38 @@ public class Interface {
             Object[] row = rowData.toArray();
             model.addRow(row);
         }
+    }
+
+    public String reemplazarLetras(String entrada) {
+        StringBuilder resultado = new StringBuilder();
+
+        for (int i = 0; i < entrada.length(); i++) {
+            char letra = entrada.charAt(i);
+            switch (letra) {
+                case 'a':
+                    resultado.append("Avion");
+                    break;
+                case 'b':
+                    resultado.append("Barco");
+                    break;
+                case 'c':
+                    resultado.append("Convoy");
+                    break;
+                case 'd':
+                    resultado.append("Dron");
+                break;
+                case 't':
+                    resultado.append("Tanque");
+                break;
+                default:
+                    resultado.append(letra);
+            }
+
+            if (i < entrada.length() - 1) {
+                resultado.append(", ");
+            }
+        }
+
+        return resultado.toString();
     }
 }
