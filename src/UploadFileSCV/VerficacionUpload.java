@@ -99,7 +99,7 @@ public class VerficacionUpload {
     }
 
     Utilidades utilidades = new Utilidades();
-    
+
     public void impresionInicial(String rutaArchivo, String Usuario){
         System.out.println(utilidades.hlCEDULA + "\n" + utilidades.hlCORREO + "\n" + utilidades.hlNOMBRE);
         int HLnumeroIntentos = 3, HLnumeroMenu;
@@ -113,7 +113,7 @@ public class VerficacionUpload {
         System.out.print("+ Clave: ");
         HLclave = sc.nextLine();
         System.out.println("--------------------");
-            HLbandera = utilidades.hlIngresoUsuario(HLusuario, HLclave,HLbandera);
+            HLbandera = utilidades.llIngresoUsuario(HLusuario, HLclave,HLbandera);
             if(HLbandera==true){
             HLnumeroIntentos--;
             System.out.println("* Numero de intentos: "+HLnumeroIntentos);

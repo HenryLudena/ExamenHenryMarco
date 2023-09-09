@@ -22,7 +22,7 @@ public class LoginUser {
         System.out.print("+ Clave: ");
         HLclave = sc.nextLine();
         System.out.println("--------------------");
-            HLbandera = utilidades.hlIngresoUsuario(HLusuario, HLclave,HLbandera);
+            HLbandera = utilidades.llIngresoUsuario(HLusuario, HLclave,HLbandera);
             if(HLbandera==true){
             HLnumeroIntentos--;
             System.out.println("* Numero de intentos: "+HLnumeroIntentos);

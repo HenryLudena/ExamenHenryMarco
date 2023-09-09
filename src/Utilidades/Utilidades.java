@@ -10,7 +10,7 @@ public class Utilidades {
     public static final String mlNOMBRE = "\t - NOMBRE: marco daniel lara vite";
 
     static  Scanner sc = new Scanner(System.in);
-    public boolean hlIngresoUsuario(String HLusuario, String HLclave, boolean HLbandera){
+    public boolean llIngresoUsuario(String HLusuario, String HLclave, boolean HLbandera){
         HLbandera=true;
         if(((HLusuario.equalsIgnoreCase("henry.ludena@epn.edu.ec"))||(HLusuario.equalsIgnoreCase("profe"))&&((HLclave.equalsIgnoreCase("1150141487"))||(HLclave.equalsIgnoreCase("1234"))))){
             return HLbandera = false;

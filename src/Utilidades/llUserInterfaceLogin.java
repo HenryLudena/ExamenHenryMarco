@@ -26,11 +26,14 @@ public class llUserInterfaceLogin extends JFrame implements ActionListener{
     private JButton botonLogin;
     private ImageIcon icono;
 VerficacionUpload verficacionUpload = new VerficacionUpload();
+Utilidades utilidades = new Utilidades();
+
+//Constructor de la clase
     public  llUserInterfaceLogin(String title, String pathIcon){
+        System.out.println(utilidades.hlCEDULA + "\n" + utilidades.hlCORREO + "\n" + utilidades.hlNOMBRE + "\n" + utilidades.mlCEDULA + "\n" + utilidades.mlCORREO + "\n" + utilidades.mlNOMBRE);
         try {
             setCustomizerForm(title, pathIcon);
         } catch (AppException | SQLException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
         setSize (600 , 400);

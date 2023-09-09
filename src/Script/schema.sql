@@ -39,3 +39,6 @@ Nombre                      VARCHAR(50)         NOT NULL , -- Nombre del usuario
 Estado                      VARCHAR(50)         DEFAULT ('A')
 );
 -- INSERT INTO LL_USUARIO (Nombre) VALUES ("Pepe");
+SELECT m.Nombre "Nombr"
+FROM LL_USUARIO m
+WHERE Estado = 'A';
