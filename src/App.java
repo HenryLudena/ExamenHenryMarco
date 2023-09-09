@@ -6,6 +6,7 @@ import java.sql.PreparedStatement;
 
 import UploadFileSCV.ConexionSQL;
 import UploadFileSCV.VerficacionUpload;
+import UserInterface.Interface;
 import Utilidades.LoginUser;
 import Utilidades.llUserInterfaceLogin;
 
@@ -15,10 +16,12 @@ public class App {
     // String filePath = "ArchivosSCV\\202111083-HIDALGO CRUZ PABLO ESTEBAN.csv";
     // conexionSQL.DatabaseInsert(filePath);
     // VerficacionUpload VerficacionUpload = new VerficacionUpload();
-    // VerficacionUpload.VerficacionExistenciaFile();
+    // VerficacionUpload.impresionInicial("InterfazLogin", "src\\Utilidades\\ImagenIcono\\1693487.png");;
     // LoginUser loginUser = new LoginUser();
     // loginUser.impresionInicial();
     llUserInterfaceLogin llUserInterfaceLogin = new llUserInterfaceLogin("InterfazLogin", "src\\Utilidades\\ImagenIcono\\1693487.png");
+    // Interface Interface = new Interface();
+    // Interface.main();
     
 }
 }

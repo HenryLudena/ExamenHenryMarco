@@ -1,0 +1,11 @@
+Lunes	Martes	Miercoles	Jueves	Viernes	Tipo Arsenal	Arsenal	Coordenadas	Codigo
+01_02;;				Aereo	Avion	01-Coord_North	a
+	02 _04				Maritimo	Barco	02-Coord_East	b
+		03_06			Terrestre	Convoy	03-Coord_North	c
+			04_08		Areo	Dron	04-Coord_East	d
+				05_10	Terrestre	Tanque	05-Coord_North	t
+			04_08				06-Coord_East	
+		03_06					07-Coord_North	
+	02 _04						08-Coord_East	
+01_02							09-Coord_North	
+							00-Coord_South	

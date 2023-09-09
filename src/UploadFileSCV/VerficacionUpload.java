@@ -10,6 +10,8 @@ import java.util.HashSet;
 import java.util.Scanner;
 import java.util.Set;
 
+import Utilidades.Utilidades;
+
 
 public class VerficacionUpload {
     static Scanner sc = new Scanner(System.in);
@@ -94,5 +96,36 @@ public class VerficacionUpload {
         } catch (IOException e) {
             System.err.println("Error al guardar el archivo de nombres: " + e.getMessage());
         }
+    }
+
+    Utilidades utilidades = new Utilidades();
+    
+    public void impresionInicial(String rutaArchivo, String Usuario){
+        System.out.println(utilidades.hlCEDULA + "\n" + utilidades.hlCORREO + "\n" + utilidades.hlNOMBRE);
+        int HLnumeroIntentos = 3, HLnumeroMenu;
+        boolean HLbandera = true;
+        String HLusuario;
+        String HLclave;
+        do {
+        System.out.println("--------------------");
+        System.out.print("+ Usuario: ");
+        HLusuario = sc.nextLine();
+        System.out.print("+ Clave: ");
+        HLclave = sc.nextLine();
+        System.out.println("--------------------");
+            HLbandera = utilidades.hlIngresoUsuario(HLusuario, HLclave,HLbandera);
+            if(HLbandera==true){
+            HLnumeroIntentos--;
+            System.out.println("* Numero de intentos: "+HLnumeroIntentos);
+            }
+            if(HLnumeroIntentos==0){
+            System.out.println("Lo sentimos tu usuario y clave son incorrectos..!");
+            System.out.println("Gracias");
+            System.exit(0);
+            }
+        } while ((HLbandera==true)&&(HLnumeroIntentos>=1));
+        utilidades.HLlimpiarTerminal();
+        System.out.println("Bienvenido "+HLusuario.toUpperCase());
+        VerficacionExistenciaFile(rutaArchivo, Usuario);
     }
 }

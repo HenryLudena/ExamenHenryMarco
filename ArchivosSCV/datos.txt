@@ -1,4 +1,4 @@
-Geo posición ; Lunes ; Martes; Miércoles; Jueves ; Viernes; Tipo Arsenal
+Geo posicion ; Lunes ; Martes; Miercoles; Jueves ; Viernes; Tipo Arsenal
 07-Coord_North; 01-02 ; ; ; ; ; a
 08-Coord_East ; ; 02-04 ; ; ; ; ab
 04-Coord_North; ; ; 03-06 ; ; ; abc

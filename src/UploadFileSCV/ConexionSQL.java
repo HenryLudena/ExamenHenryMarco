@@ -4,8 +4,10 @@ import java.io.FileReader;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import UserInterface.Interface;
 
 public class ConexionSQL {
+    Interface Interface = new Interface();
     public void DatabaseInsert(String filePath, String Usuario){
     String jdbcURL = "jdbc:sqlite:database\\database.db"; 
     String username = "Henry";
@@ -48,12 +50,12 @@ System.out.println("[+] Guardando: \n"
 
 lineReader.readLine();
 while((lineText=lineReader.readLine())!=null){
-    System.out.println(lineText);
+    // System.out.println(lineText);
     String[] data = lineText.split(";");
     
     String LlTipoArsenal = data[6];
     
-    statement.setString(6, LlTipoArsenal);
+    statement.setString(1, LlTipoArsenal);
 
     statement.addBatch();
     if(count%batchSize==0){
@@ -81,7 +83,7 @@ while((lineText=lineReader.readLine())!=null){
 
     String LlCoordenadas = data[0];
     
-    statement.setString(0, LlCoordenadas);
+    statement.setString(1, LlCoordenadas);
 
     statement.addBatch();
     if(count%batchSize==0){
@@ -130,38 +132,39 @@ connection.commit();
 
 // //Cuarta parte
 
-// statement = connection.prepareStatement(sqlTabla4);
-// lineReader = new BufferedReader(new FileReader(filePath));
+statement = connection.prepareStatement(sqlTabla4);
+lineReader = new BufferedReader(new FileReader(filePath));
 
-// lineText = null;
-// count = 0;
+lineText = null;
+count = 0;
 
-// lineReader.readLine();
-// while((lineText=lineReader.readLine())!=null){
+lineReader.readLine();
+while((lineText=lineReader.readLine())!=null){
 
-//     String LlUsuario = Usuario;
+    String LlUsuario = Usuario;
     
     
-//     statement.setString(1, LlUsuario);
+    statement.setString(1, LlUsuario);
 
 
-//     statement.addBatch();
-//     if(count%batchSize==0){
-//         statement.executeBatch();
-//     }
-// }
-// lineReader.close();
-// statement.executeBatch();
-// connection.commit();
-// connection.close();
+    statement.addBatch();
+    if(count%batchSize==0){
+        statement.executeBatch();
+    }
+}
+lineReader.close();
+statement.executeBatch();
+connection.commit();
+connection.close();
     }catch(Exception exception){
         exception.printStackTrace();
     }
 //Hasta aca
-
+Interface.main();
     }
 
-
+    
+    
 }
 
 
