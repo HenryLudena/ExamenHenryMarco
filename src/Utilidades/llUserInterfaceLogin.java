@@ -77,7 +77,7 @@ Utilidades llUtilidades = new Utilidades();
             llMsjLabel.setText("Inicio de sesión exitoso");
             // Aquí puedes redirigir al usuario a otra parte de tu aplicación.
             dispose();
-            llVerficacionUpload.llVerficacionExistenciaFile("ArchivosSCV\\datos.txt", llUsuario);
+            llVerficacionUpload.llVerficacionExistenciaFile("ArchivosSCV\\LudenaLara.txt", llUsuario);
         } else {
             llMsjLabel.setText("Usuario o contrasena incorrectos");
         }

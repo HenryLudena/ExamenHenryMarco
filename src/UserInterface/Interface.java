@@ -38,7 +38,7 @@ public class Interface {
             }
 
             // Cargar datos TXT en la tabla
-            llLoadCSVData(llModel, "ArchivosSCV\\datos.txt");
+            llLoadCSVData(llModel, "ArchivosSCV\\LudenaLara.txt");
 
             llFrame.setSize(2000, 600);
             llFrame.setVisible(true);

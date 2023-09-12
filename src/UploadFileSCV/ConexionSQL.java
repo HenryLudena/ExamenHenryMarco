@@ -9,7 +9,7 @@ import UserInterface.Interface;
 public class ConexionSQL {
     Interface Interface = new Interface();
     public void DatabaseInsert(String filePath, String Usuario){
-    String jdbcURL = "jdbc:sqlite:database\\databaseUcraine.db"; 
+    String jdbcURL = "jdbc:sqlite:database\\dataBaseUcraine.db"; 
     String username = "Henry";
     String password = "";
 
